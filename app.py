@@ -84,7 +84,7 @@ class Game:
         return
     
     def match_round(self):
-        self.__winners = []
+        self.__winners = [] # reset winners
 
         players = self.__players
 
@@ -96,7 +96,7 @@ class Game:
             
             print(f"[ {self.get_symbol(flip_result)}: {self.get_heads_tails(flip_result)} ]  {player.get_name()}")
             
-            if flip_result: # player with flip_count = 1 is winner
+            if flip_result: # player with flip_result = 1 is winner
                 self.__winners.append(player)
 
             time.sleep(1)
