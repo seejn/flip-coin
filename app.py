@@ -19,83 +19,129 @@ class Person:
         coin = Coin()
         return coin.flip()
 
-players = ["henry", "robert", "john", "Jane", "thor"]
-
-
 class Game:
     def __init__(self, players):
         self.__winners = []
         self.__players = players
         self.__round = 0
         self.__coin_side = ["Tails", "Heads"]
-        self.__result_symbol = ["x ", "ok "]
+        self.__symbol = ["x", "ok"]
+    
+    def set_next_round(self):
+        self.__round += 1
+        return
 
-    def start(self):
-        if not len(self.__winners):
-            self.__winners = self.__players
-       
-        print("### Welcome To Coin Flip Game ###")
-        print(f"Joined Players: {self.get_winners()} \n")
+    def get_players(self):
+        return [player.get_name() for player in self.__players]
 
-        while len(self.__winners) > 1:
-
-            self.__round += 1
-
-            if len(self.__winners) > 1:
-                self.__players = self.__winners
-            
-            print(f"### Round: {self.__round} ###")
-            self.match_play()
-            print(f"Round {self.__round} Winners: {self.get_winners()} \n")
-            time.sleep(1)
-        
-        print(f"!!! Winner Found: {[winner.get_name() for winner in self.__winners]} !!!")
-
-
-    def match_play(self):
-        self.__winners = []
-        print("Player-Name: Flip-Result")
-        while True:
-            for player in self.__players:
-                flip_result = player.flip_coin()
-                print(f"{self.__result_symbol[flip_result]} {player.get_name()}: {self.__coin_side[flip_result]}")
-                if flip_result:
-                    self.__winners.append(player)
-                time.sleep(1)
-
-            if len(self.__winners) > 0:
-                break
-            else:
-                continue
+    def get_winners_count(self):
+        return len(self.__winners)
 
     def get_winners(self):
         return [winner.get_name() for winner in self.__winners]
 
-  
+    def get_round(self, flip_result):
+        return self.__round
+
+    def get_heads_tails(self, flip_result):
+        return self.__coin_side[flip_result]
+
+    def get_symbol(self, flip_result):
+        return self.__symbol[flip_result]
+
+    def play_game(self):
+
+        while True:
+
+            winners_count = self.get_winners_count()
+
+            if self.__round == 0: # start first match round
+                print("### Welcome To Coin Flip Game ###")
+                print(f"Joined Players: {len(self.get_players())} \n")
+
+                self.set_next_round()
+                print(f"\n### Round: {self.__round} ###\n")
+
+                self.match_round()
+                print(f"\n=> Round {self.__round} Winners [ {self.get_winners_count()} ]: {self.get_winners()} \n")
+
+            elif self.get_winners_count() == 1: # end game
+                print(f"!!! Winner Found: {self.get_winners()} !!!")
+                break
+
+            else: # players for next round is winners of previous round
+                self.__players = self.__winners
+                
+                self.set_next_round()
+                print(f"\n### Round: {self.__round} ###\n")
+                
+                self.match_round()
+
+                print(f"\n=> Round {self.__round} Winners [ {self.get_winners_count()} ]: {self.get_winners()} \n")
+
+        time.sleep(1)
+
+        return
+    
+    def match_round(self):
+        self.__winners = []
+
+        players = self.__players
+
+        print("\n[ Symbol: Flip Result ] Player Name \n")
+
+        for player in players: # every player flips
+            
+            flip_result = player.flip_coin()
+            
+            print(f"[ {self.get_symbol(flip_result)}: {self.get_heads_tails(flip_result)} ]  {player.get_name()}")
+            
+            if flip_result: # player with flip_count = 1 is winner
+                self.__winners.append(player)
+
+            time.sleep(1)
+        
+        if not self.get_winners_count(): # replay match_round if no winner found in current round
+            self.match_round()
+
+        print("\n")
+
+        return
+
 player_names = [
-    "Elian Koch",
-    "Martina Barclay",
-    "Josh Menard",
-    "Bryce Wertz",
-    "Ameer Merrick",
-    "Elsie Adair",
-    "Lorenzo Patton",
-    "Laisha Schroeder",
-    "Geovanni Mosier",
-    "Ryland Hernandez",
-    "Jayden Witt",
-    "Garret Cooke",
-    "Tyanna Gonzales",
-    "Marshall Kinsey",
-    "Sydni Leahy",
-    "Helena Faust",
-    "Anastasia Heredia",
-    "Jaela Slater",
-    "Nicolle Cody",
-    "Lyric Limon",
+    "Armani Boyles",
+    "Deshaun Betz",
+    "Kolby Stacy",
+    "Lucille Richards",
+    "Bruce Crutchfield",
+    "Charles Hamlin",
+    "Henry Forrester",
+    "Lola Jimenez",
+    "Jayda Reilly",
+    "Ximena Rivas",
+    "Maya Newton",
+    "Tamara Steward",
+    "Tionne Crouch",
+    "Darby Walter",
+    "Johnson Rushing",
+    "Austen Banks",
+    "Zakary Roberson",
+    "Roy Templeton",
+    "Litzy Leonard",
+    "Jeniffer Boswell",
+    "Karleigh Miles",
+    "Daron Dent",
+    "Bernard Raines",
+    "Molly Gibbs",
+    "Giancarlo Denton",
+    "Gavin Mortensen",
+    "Catrina Dayton",
+    "Regan Bittner",
+    "Alexandre Anderson",
+    "Alex Grier",
 ]
 
 players = [Person(player) for player in player_names]
 game = Game(players)
 
-game.start()
+game.play_game()
