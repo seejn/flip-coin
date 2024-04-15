@@ -84,8 +84,8 @@ class Game:
         return
     
     def match_round(self):
-        self.__winners = [] # reset winners
 
+        self.__winners = [] # reset winners
         players = self.__players
 
         print("\n[ Symbol: Flip Result ] Player Name \n")

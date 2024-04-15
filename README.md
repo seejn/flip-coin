@@ -2,11 +2,6 @@
 # Flip Coin
 
 Players compete with their luck for winning the game.
-
-
-
-
-
 ## Screenshots
 
 ![App Screenshot](file:///home/anon/Pictures/Screenshots/Screenshot%20from%202024-04-15%2022-26-13.png
