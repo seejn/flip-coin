@@ -29,13 +29,13 @@ round = 0
 
 ## Process
 1) play_game()
-    criteria:
+    - criteria:
         - round == 0 -> match_round()
         - len(winners) == 1 -> end_game()
         - len(winners) > 1 -> players = winners -> match_round()
 
 2) match_round()
-    criteria:
+    - criteria:
         - empty winners
         - every player flips if "heads" this player append to winners
         - if every player flip "tails" replay match_round()
