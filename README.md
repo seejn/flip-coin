@@ -19,6 +19,29 @@ cd flip-coin
 ```
 python app.py
 ```
+
+## Initialization of Game
+winners = []
+players
+coin_side = ["Tails", "Heads"]
+sym = ["x", "ok"]
+round = 0
+
+## Process
+1) play_game()
+    criteria:
+        a) round == 0 -> match_round()
+        b) len(winners) == 1 -> end_game()
+        c) len(winners) > 1 -> players = winners -> match_round()
+
+2) match_round()
+    criteria:
+        a) empty winners
+        b) every player flips if "heads" this player append to winners
+        c) if every player flip "tails" replay match_round()
+
+3) play_game() until single winner
+
 ## Credit
 
 https://www.youtube.com/shorts/iEwvKcuwstk
