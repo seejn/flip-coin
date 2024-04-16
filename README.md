@@ -21,11 +21,11 @@ python app.py
 ```
 
 ## Initialization of Game
-winners = [], 
-players, 
-coin_side = ["Tails", "Heads"], 
-sym = ["x", "ok"], 
-round = 0
+- winners = []
+- players
+- coin_side = ["Tails", "Heads"]
+- sym = ["x", "ok"]
+- round = 0
 
 ## Process
 1) play_game()
