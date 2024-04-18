@@ -40,7 +40,7 @@ class Game:
     def get_winners(self):
         return [winner.get_name() for winner in self.__winners]
 
-    def get_round(self, flip_result):
+    def get_round(self):
         return self.__round
 
     def get_heads_tails(self, flip_result):
@@ -52,8 +52,6 @@ class Game:
     def play_game(self):
 
         while True:
-
-            winners_count = self.get_winners_count()
 
             if self.__round == 0: # start first match round
                 print("### Welcome To Coin Flip Game ###")
@@ -77,7 +75,7 @@ class Game:
                 
                 self.match_round()
 
-                print(f"\n=> Round {self.__round} Winners [ {self.get_winners_count()} ]: {self.get_winners()} \n")
+                print(f"\n=> Round {self.get_round()} Winners [ {self.get_winners_count()} ]: {self.get_winners()} \n")
 
         time.sleep(1)
 
