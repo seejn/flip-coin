@@ -58,10 +58,10 @@ class Game:
                 print(f"Joined Players: {len(self.get_players())} \n")
 
                 self.set_next_round()
-                print(f"\n### Round: {self.__round} ###\n")
+                print(f"\n### Round: {self.get_round()} ###\n")
 
                 self.match_round()
-                print(f"\n=> Round {self.__round} Winners [ {self.get_winners_count()} ]: {self.get_winners()} \n")
+                print(f"\n=> Round {self.get_round()} Winners [ {self.get_winners_count()} ]: {self.get_winners()} \n")
 
             elif self.get_winners_count() == 1: # end game
                 print(f"!!! Winner Found: {self.get_winners()} !!!")
@@ -71,7 +71,7 @@ class Game:
                 self.__players = self.__winners
                 
                 self.set_next_round()
-                print(f"\n### Round: {self.__round} ###\n")
+                print(f"\n### Round: {self.get_round()} ###\n")
                 
                 self.match_round()
 
